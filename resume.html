@@ -6,9 +6,10 @@
     <title>My Resume</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <canvas id="background-canvas"></canvas>
     <header>
         <nav>
             <ul>
@@ -19,46 +20,45 @@
         </nav>
     </header>
     <main>
-        <section class="resume-section">
+        <section id="personal-info" class="fade-in">
             <h2>Personal Information</h2>
             <table>
-                <tr><td>Name:</td><td>Vinay S</td></tr>
-                <tr><td>Address:</td><td>Aralepete Hoskote 4th cross market road bangalore 562114</td></tr>
-                <tr><td>Email:</td><td>vinays013042005@gmail.com </td></tr>
-                <tr><td>Contact:</td><td>+91 9380661129</td></tr>
+                <tr><td>Name:</td><td>[Your Full Name]</td></tr>
+                <tr><td>Address:</td><td>[Your Address]</td></tr>
+                <tr><td>Contact:</td><td>[Your Phone] | [Your Email]</td></tr>
             </table>
         </section>
-        <section class="resume-section">
+        <section id="education" class="fade-in">
             <h2>Education</h2>
             <ul>
-                <li><strong>B.E in Computer Science</strong> Gopalan college of engineering and management</li>
-                <li>Graduated in the year 2027</li>
+                <li><strong>[Degree, e.g., B.S. in Computer Science]</strong> - [University Name], [Graduation Year]</li>
+                <li><strong>[Another Degree]</strong> - [University], [Year]</li>
             </ul>
         </section>
-        <section class="resume-section">
+        <section id="skills" class="fade-in">
             <h2>Skills</h2>
             <ul>
-                <li>Technical: HTML, CSS, JavaScript, Python, React</li>
-                <li>Soft: Discipline, Problem-Solving, Team Leadership</li>
+                <li>Technical: [Skill 1], [Skill 2], [Skill 3]</li>
+                <li>Soft: [Soft Skill 1], [Soft Skill 2]</li>
             </ul>
         </section>
-        <section class="resume-section">
+        <section id="experience" class="fade-in">
             <h2>Work Experience</h2>
             <ul>
-                <li><strong>Full Stack Developer</strong>  (2025-Present)<br>Developed full-stack apps, led agile teams.</li>
-                <li><strong>UI and UX Designer</strong> - Tech Forge <br>Built responsive websites and debugged legacy code.</li>
+                <li><strong>[Job Title]</strong> at [Company], [Start Date] - [End Date]<br>Description: [Responsibilities]</li>
+                <li><strong>[Another Job]</strong> at [Company], [Dates]<br>Description: [Details]</li>
             </ul>
         </section>
-        <section class="resume-section">
+        <section id="projects" class="fade-in">
             <h2>Projects</h2>
             <ul>
-                <li><strong>Radar with ultrasonic sensor</strong> observing things in blind spot <a href="#">View on GitHub</a></li>
-                <li><strong>E-Commerce </strong> - Full-stack e-commerce platform. <a href="#">Live Demo</a></li>
+                <li><strong>[Project Name]</strong>: [Description]. <a href="[Link]">View Here</a></li>
+                <li><strong>[Another Project]</strong>: [Description]. <a href="[Link]">View Here</a></li>
             </ul>
         </section>
     </main>
     <footer>
-        <p> 2025 vinuthon09. All rights reserved.</p>
+        <p>&copy; 2023 [Your Name]. All rights reserved.</p>
     </footer>
 </body>
 </html>
