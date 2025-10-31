@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Vinay's Resume</title>
+    <title>Welcome to [Your Name]'s Resume</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <canvas id="background-canvas"></canvas> <!-- Generative particle background -->
     <header>
         <nav>
             <ul>
@@ -19,18 +20,16 @@
         </nav>
     </header>
     <main>
-        <section class="hero">
-            <div class="floating-profile">
-                <img src="https://via.placeholder.com/150/000000/FFFFFF?text=Samurai+Profile" alt="Profile Picture" class="profile-pic">
-            </div>
-            <h1>Welcome to Vinay's Resume</h1>
-            <p class="intro">"A warrior codes with precision, like a katana's strike—sharp, relentless, and honorable."</p>
-            <p class="objective">Full-Stack Developer with a passion for crafting extraordinary digital experiences, inspired by the discipline of the samurai.</p>
-           
+        <section id="intro" class="fade-in">
+            <h1>Welcome to [Your Name]'s Resume</h1>
+            <img src="https://via.placeholder.com/200" alt="Professional Photo" class="profile-photo"> <!-- Replace with your photo URL -->
+            <p class="quote">"Innovation is the ability to see change as an opportunity." – Steve Jobs</p>
+            <p class="intro-text">I am a passionate [Your Profession, e.g., Software Engineer] with [X] years of experience in [Your Field]. Dedicated to creating impactful solutions and driving excellence in every project.</p>
+            <p class="career-objective">Career Objective: To leverage my skills in [Skills] to contribute to innovative teams and deliver high-quality results.</p>
         </section>
     </main>
     <footer>
-        <p> 2025 Vinuthon09. All rights reserved.</p>
+        <p>&copy; 2023 [Your Name]. All rights reserved.</p>
     </footer>
 </body>
 </html>
