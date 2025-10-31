@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    // Smooth Scrolling and Scroll-Driven Storytelling
+    // Smooth Scrolling and Scroll-Driven Storytelling (unchanged)
     $(window).on('scroll', function() {
         $('.fade-in').each(function() {
             var elementTop = $(this).offset().top;
@@ -10,7 +10,7 @@ $(document).ready(function() {
         });
     });
 
-    // Form Validation with jQuery
+    // Form Validation with jQuery (unchanged)
     $('#contactForm').on('submit', function(e) {
         e.preventDefault();
         var name = $('#name').val().trim();
@@ -30,62 +30,137 @@ $(document).ready(function() {
         $(this)[0].reset();
     });
 
-    // Generative Particle Background Animation (Canvas-based, 60fps+)
+    // Extraordinary Samurai Theme Background Animation (Canvas-based, 60fps+)
     var canvas = document.getElementById('background-canvas');
     var ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    var particles = [];
-    var numParticles = 100; // Adjust for performance
+    // Sakura Petals Array
+    var petals = [];
+    var numPetals = 50; // Adjust for performance (fewer = smoother)
 
-    function Particle(x, y) {
+    function SakuraPetal(x, y) {
         this.x = x;
         this.y = y;
-        this.vx = Math.random() * 2 - 1;
-        this.vy = Math.random() * 2 - 1;
-        this.size = Math.random() * 3 + 1;
+        this.vx = Math.random() * 0.5 - 0.25; // Horizontal drift (wind)
+        this.vy = Math.random() * 1 + 0.5; // Falling speed
+        this.rotation = 0;
+        this.rotationSpeed = Math.random() * 0.02 - 0.01; // Gentle spin
+        this.size = Math.random() * 8 + 4; // Petal size
+        this.opacity = Math.random() * 0.8 + 0.2;
+        this.shadowOffset = 2; // For depth
     }
 
-    Particle.prototype.update = function() {
-        this.x += this.vx;
+    SakuraPetal.prototype.update = function() {
+        this.x += this.vx + Math.sin(this.y * 0.01) * 0.5; // Swaying motion
         this.y += this.vy;
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        this.rotation += this.rotationSpeed;
+        if (this.y > canvas.height + 20) {
+            this.y = -20; // Reset to top
+            this.x = Math.random() * canvas.width;
+        }
     };
 
-    Particle.prototype.draw = function() {
+    SakuraPetal.prototype.draw = function() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.globalAlpha = this.opacity;
+        
+        // Draw petal shape (stylized sakura)
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 123, 255, 0.5)';
+        ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 182, 193, 0.8)'; // Soft pink
         ctx.fill();
+        
+        // Add shadow for depth
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+        ctx.shadowBlur = this.shadowOffset;
+        ctx.shadowOffsetX = this.shadowOffset;
+        ctx.shadowOffsetY = this.shadowOffset;
+        
+        ctx.restore();
     };
 
-    for (var i = 0; i < numParticles; i++) {
-        particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+    // Initialize petals
+    for (var i = 0; i < numPetals; i++) {
+        petals.push(new SakuraPetal(Math.random() * canvas.width, Math.random() * canvas.height));
     }
 
-    function connectParticles() {
-        for (var i = 0; i < particles.length; i++) {
-            for (var j = i + 1; j < particles.length; j++) {
-                var dx = particles[i].x - particles[j].x;
-                var dy = particles[i].y - particles[j].y;
-                var distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < 100) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = 'rgba(0, 123, 255, ' + (1 - distance / 100) + ')';
-                    ctx.stroke();
-                }
-            }
+    // Ninja Runner (Simple sprite animation)
+    var ninja = {
+        x: -100, // Start off-screen
+        y: canvas.height - 150, // Ground level
+        vx: 2, // Running speed
+        frame: 0, // Animation frame
+        frames: 8, // Total frames in sprite
+        size: 80,
+        opacity: 0.6 // Subtle
+    };
+
+    function drawNinja() {
+        ctx.save();
+        ctx.globalAlpha = ninja.opacity;
+        
+        // Simple running animation (draw as a stick figure with motion blur for "expensive" feel)
+        var frameOffset = (ninja.frame % ninja.frames) * 10; // Simulate sprite sheet
+        ctx.translate(ninja.x, ninja.y);
+        
+        // Body (simple shape)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        ctx.fillRect(-10, -40, 20, 40); // Torso
+        ctx.fillRect(-15, -50, 30, 10); // Head
+        
+        // Legs (animated)
+        var legSwing = Math.sin(ninja.frame * 0.5) * 10;
+        ctx.fillRect(-5, 0, 5, 20 + legSwing); // Left leg
+        ctx.fillRect(0, 0, 5, 20 - legSwing); // Right leg
+        
+        // Arms
+        ctx.fillRect(-20, -30, 5, 20);
+        ctx.fillRect(15, -30, 5, 20);
+        
+        ctx.restore();
+    }
+
+    function updateNinja() {
+        ninja.x += ninja.vx;
+        ninja.frame += 0.2; // Slow animation
+        if (ninja.x > canvas.width + 100) {
+            ninja.x = -100; // Loop back
         }
     }
 
+    // Mouse Interaction for Dynamic Effects
+    var mouseX = canvas.width / 2;
+    var mouseY = canvas.height / 2;
+    $(canvas).on('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Main Animation Loop
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        connectParticles();
+        
+        // Draw falling sakura petals
+        petals.forEach(petal => {
+            // Add mouse influence (petals sway toward mouse for interactivity)
+            var dx = mouseX - petal.x;
+            var dy = mouseY - petal.y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 200) {
+                petal.vx += dx * 0.0001; // Gentle pull
+            }
+            petal.update();
+            petal.draw();
+        });
+        
+        // Draw and update ninja
+        drawNinja();
+        updateNinja();
+        
         requestAnimationFrame(animate);
     }
     animate();
